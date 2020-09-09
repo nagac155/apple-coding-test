@@ -1,0 +1,84 @@
+
+<div id="page-content-wrapper">
+  <div >
+  <div class='d-flex'>
+    <button type='submit' class="btn btn-info mr-2" (click)='addUser(content)' [disabled]="userSelected">ADD</button>
+    <button type='submit' class="btn btn-info mr-2" (click)='modifyUser(content)' [disabled]="!userSelected">Modify</button>
+    <button type='submit' class="btn btn-info mr-2" (click)='deleteUser()' [disabled]="!userSelected">Delete</button>
+    <div class='ml-auto p-2'>
+      <input #searchInput type=text placeholder="search user by name, email, phone..." [value]="value"/>
+      <button type='submit' (click)='searchText($event)'>Search</button>
+    </div>
+
+  </div>
+    
+<app-table [columns]='tableColumns' [rowData]='activeUsers' [itemSelected]='userSelected' (rowSelected)=RowSelected($event)></app-table>
+  </div>
+  </div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">{{userSelected ? 'Modify User' : 'Add User'}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="userForm">
+
+        <tr>
+          <td>
+            <label>
+              Name:
+              <input type="text" formControlName="name">
+            </label>
+              <!-- <div  *ngIf="formSubmitted && userForm.get('name').errors.required">
+                Name is required.
+             </div> -->
+          </td>
+          <td>
+            <label>
+              Email:
+              <input type="text" formControlName="email">
+            </label>
+    
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>
+              Phone:
+              <input type="text" formControlName="phone">
+            </label>
+          </td>
+          <td>
+            <label>
+              Address:
+              <input type="text" formControlName="address">
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>
+              Date of Joining:
+              <div class="input-group">
+                <input class="form-control" formControlName="dateOfJoining" placeholder="yyyy-mm-dd"
+                       name="dp"  ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                </div>
+              </div>
+            </label>
+          </td>
+          <td>
+            
+          </td>
+        </tr>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      <button type="button" class="btn btn-light" (click)="add(userForm)">{{userSelected ? 'Modify' : 'Add'}}</button>
+    </div>
+  </ng-template>

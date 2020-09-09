@@ -1,0 +1,14 @@
+
+<table class='mt-5 w-100'>
+    <thead>   
+        <tr>
+            <th *ngFor='let column of columns'>{{column.title}}</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor='let item of rowData; let i=index;' (click)="RowSelected(item, i)" [class.highlight]="itemSelected && (i === sameIndex)">
+            <td *ngFor='let column of columns'>{{item[column.col]}}</td>
+        </tr>
+    </tbody>
+</table>

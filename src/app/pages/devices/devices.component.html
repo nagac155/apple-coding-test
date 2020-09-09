@@ -1,0 +1,68 @@
+
+<div id="page-content-wrapper">
+  <div class='d-flex'>
+    <button type='submit' class="btn btn-info mr-2" (click)='addUser(content)' [disabled]="deviceSelected">ADD</button>
+    <button type='submit' class="btn btn-info mr-2" (click)='modifyUser(content)' [disabled]="!deviceSelected">Modify</button>
+    <button type='submit' class="btn btn-info mr-2" (click)='deleteUser()' [disabled]="!deviceSelected">Delete</button>
+    <div class='ml-auto p-2'>
+      <input #searchInput type=text placeholder="search by device name, type, OS Version..." [value]="value"/>
+      <button type='submit' (click)='searchText($event)'>Search</button>
+    </div>
+
+  </div>
+    
+  <app-table [columns]='tableColumns' [rowData]='activeDevices' [itemSelected]='deviceSelected' (rowSelected)=RowSelected($event)></app-table>
+  </div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">{{deviceSelected ? 'Modify Device' : 'Add Device'}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="deviceForm">
+
+        <tr>
+          <td>
+            <label>
+              Devive Name:
+              <input type="text" formControlName="deviceName">
+            </label>
+          </td>
+          <td>
+            <label>
+              Device Type:
+              <input type="text" formControlName="deviceType">
+            </label>
+    
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>
+              OS Version:
+              <input type="text" formControlName="OSVersion">
+            </label>
+          </td>
+          <td>
+            <label>
+              Last Login:
+              <div class="input-group">
+                <input class="form-control" formControlName="lastLogin" placeholder="yyyy-mm-dd"
+                       name="dp"  ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                </div>
+              </div>
+            </label>
+          </td>
+        </tr>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      <button type="button" class="btn btn-light" (click)="add(deviceForm)">{{deviceSelected ? 'Modify' : 'Add'}}</button>
+    </div>
+  </ng-template>

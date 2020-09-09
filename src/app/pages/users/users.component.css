@@ -1,0 +1,23 @@
+
+table {
+    padding: 10px;
+    border: 1px solid black;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+.highlight {
+    background-color: rgb(201, 119, 119);
+}
+
+div#page-content-wrapper {
+    margin: 20px;
+    width: 100%;
+}
+
+button {
+    padding-right: 10px;
+}

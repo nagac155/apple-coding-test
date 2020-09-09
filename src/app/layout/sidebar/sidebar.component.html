@@ -1,0 +1,6 @@
+<aside>
+    <ul>
+        <li *ngFor="let item of navItems" ><a [routerLink]="[item.path]" routerLinkActive="bg-secondary text-white">
+            {{item.title}}</a></li>
+    </ul>
+</aside>
