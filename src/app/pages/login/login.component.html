@@ -1,0 +1,19 @@
+<section>
+
+    <form [formGroup]="logiForm" (ngSubmit)="login()">
+        <h2 >Login</h2>
+    
+                <label>Username:</label>
+                <input matInput type="text" formControlName="LoginUser">
+    
+            <br>
+    
+                <label>Password:</label>
+                <input matInput type="password" formControlName="LoginPassword">
+            <br>
+    
+       
+            <button type="submit" >Submit</button>
+        
+    </form>
+</section>
