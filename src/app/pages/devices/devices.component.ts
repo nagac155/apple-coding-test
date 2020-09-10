@@ -81,6 +81,12 @@ export class DevicesComponent implements OnInit{
         this.modalService.dismissAll();
     }
 
+    cancel() {
+        this.deviceForm.reset();
+        this.selectedDevice = {};
+        this.modalService.dismissAll();
+      }
+
     RowSelected(u: any){
         this.selectedDevice = u;
 
