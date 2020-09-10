@@ -84,6 +84,12 @@ export class UsersComponent implements OnInit{
         this.modalService.dismissAll();
     }
 
+    cancel() {
+      this.userForm.reset();
+      this.selectedUser = {};
+      this.modalService.dismissAll();
+    }
+
     RowSelected(u: any){
         this.selectedUser = u;
 
